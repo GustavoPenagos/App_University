@@ -3,7 +3,9 @@ using App_University.Logic.Repository.Interface;
 using App_University.Model.Dtos.Enums;
 using App_University.Model.Response.Common;
 using App_University.Model.Response.Common.Wrappers;
+using App_University.Transversal.Message;
 using App_University.Transversal.MessageResponse;
+
 namespace App_University.Logic.Repository.Implementation
 {
     public class PaymentConsult(IConsults consults) : IPaymentConsult
@@ -13,17 +15,20 @@ namespace App_University.Logic.Repository.Implementation
 
         public async Task<Response> SaradapConsult(string program, string term_code)
         {
-            PaymentConsultResponse jObject = new();
+            List<PaymentConsultResponse> jObject;
             try
             {
                 var (conPago, sinPago) = await _consults.EjecutarContarStvadmr(program, term_code);
-                jObject = new PaymentConsultResponse
-                {
-                    Program = program,
-                    Term_code = term_code,
-                    Pagaron = conPago,
-                    No_pagaron = sinPago
-                };
+                jObject =
+                [
+                    new PaymentConsultResponse
+                    {
+                        Program = program,
+                        Term_code = term_code,
+                        Pagaron = conPago,
+                        No_pagaron = sinPago
+                    }
+                ];
             }
             catch (Exception ex)
             {

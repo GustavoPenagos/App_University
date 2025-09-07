@@ -1,0 +1,47 @@
+﻿@using App_University.Model.Response.Common
+@model IEnumerable<PaymentConsultResponse>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Consultas</h1>
+    @using (Html.BeginForm("ConsultaPagos", "Home", FormMethod.Post))
+    {
+        <div class="mb-3">
+            <label for="Program" class="form-label">Código del programa</label>
+            <input type="text" class="form-control" id="Program" name="Program" />
+        </div>
+        <div class="mb-3">
+            <label for="Term_code" class="form-label">Periodo</label>
+            <input type="text" class="form-control" id="Term_code" name="Term_code" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+    @if(Model != null)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Program</th>
+                    <th>Term_code</th>
+                    <th>Pagaron</th>
+                    <th>No_pagaron</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var message in Model)
+                {
+                    <tr>
+                        <td>@message.Program</td>
+                        <td>@message.Term_code</td>
+                        <td>@message.Pagaron</td>
+                        <td>@message.No_pagaron</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }    
+
+
+</div>

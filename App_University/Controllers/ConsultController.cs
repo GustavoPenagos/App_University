@@ -2,6 +2,7 @@
 using App_University.Model.Dtos.Enums;
 using App_University.Model.Request;
 using App_University.Model.Response.Common.Wrappers;
+using App_University.Transversal.Message;
 using App_University.Transversal.MessageResponse;
 using App_University.Transversal.Utils.Util;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace App_University.Controllers
         private readonly IPaymentRegistry _registry = registry;
         private readonly ResponseStructure _responseStructure = new ResponseStructure();
 
-        [HttpGet("GET/consulta-pagos")]
+        [HttpGet("/consulta-pagos")]
         public async Task<Response> ConsultaPagos(string program, string term_code)
         {
             if (!program.IsValidRequest() || !term_code.IsValidRequest())

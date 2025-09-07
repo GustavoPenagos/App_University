@@ -5,7 +5,7 @@ namespace App_University.Model.Request
 {
     public  class PaymentRegisterRequest
     {
-        [JsonPropertyName("Pidn")]
+        [JsonPropertyName("Pidm")]
         public int Pidm { get; set; }
         [JsonPropertyName("Term_code")]
         public string? Term_code { get; set; }

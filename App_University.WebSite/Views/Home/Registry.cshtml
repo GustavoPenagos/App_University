@@ -1,0 +1,79 @@
+﻿@using App_University.Model.Dtos
+@model IEnumerable<SarchklDao>
+@{
+    
+}
+<script>
+    
+</script>
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-center">
+    <h1 class="display-4">Registros</h1>
+    @using (Html.BeginForm("InsertPayment", "Home", FormMethod.Post))
+    {
+        <div class="mb-3">
+            <label for="Program" class="form-label">Identificador del aspirante</label>
+            <input type="text" class="form-control" name="Pidm" />
+        </div>
+        <div class="mb-3">
+            <label for="Term_code" class="form-label">Periodo</label>
+            <input type="text" class="form-control" name="Term_code" />
+        </div>
+        <div class="mb-3">
+            <label for="Term_code" class="form-label">Programa</label>
+            <input type="text" class="form-control" name="Program" />
+        </div>
+        <div class="mb-3">
+            <label for="Term_code" class="form-label">Código de elemento</label>
+            <input type="text" class="form-control" name="Admr_code" />
+        </div>
+        <div class="mb-3">
+            <label for="Term_code" class="form-label">Fecha de recibido</label>
+            <input type="text" class="form-control" name="Recieve_date" />
+        </div>
+        <div class="mb-3">
+            <label for="Term_code" class="form-label">Comentario</label>
+            <input type="text" class="form-control" name="Comment" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+    @if (ViewBag.error != null)
+    {
+            <script type="text/javascript">
+            alert(@ViewBag.error);
+            </script>
+
+  
+    }
+
+    @if(Model != null)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identificador del aspirante</th>
+                    <th>Periodo</th>
+                    <th>Programa</th>
+                    <th>Código de elemento</th>
+                    <th>Fecha de recibido</th>
+                    <th>Comentario</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var message in Model)
+                {
+                    <tr>
+                        <td>@message.pidm</td>
+                        <td>@message.term_code</td>
+                        <td>@message.program</td>
+                        <td>@message.admr_code</td>
+                        <td>@message.receive_date</td>
+                        <td>@message.comment</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
